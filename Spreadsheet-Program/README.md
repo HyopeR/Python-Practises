@@ -1,7 +1,7 @@
 <h2># Programlama-2 // Tablo Program</h2>
 
 <p>
-<h4>Tablo-Program.py:</h4> 
+<h4>Spreadsheet-Program.py:</h4> 
 Python 3.4 versiyonu için yazılmıştır.<br>
 PyQt4 kütüphanesinden yararlanılarak kullanıcı arayüzü oluşturulmuştur.<br>
 Kullanıcı tarafından çeşitli şekillerde tabloya ekleme veya çıkarma yapılabilmektedir.<br>
