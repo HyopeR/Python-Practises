@@ -1,4 +1,4 @@
-<h2># Programlama-2 // Tablo Program</h2>
+<h2># Python Practises // Tablo Program</h2>
 
 <p>
 <h4>Spreadsheet-Program.py:</h4> 
