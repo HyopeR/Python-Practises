@@ -1,7 +1,7 @@
-<h2># Programlama-2 // Yakıt Hesaplayacısı</h2>
+<h2># Python Practises // Yakıt Hesaplayacısı</h2>
 
 <p>
-<h4>Odev1-Yakit-Hesaplayicisi.py:</h4> 
+<h4>Fuel-Calculation.py:</h4> 
 Python 3.4 versiyonu için yazılmıştır.<br>
 Program kullanıcı tarafından girilen 3 veri girişiyle çalışıp hesap yapmaktadır.<br>
 Arayüz ve düzenlemeler için bir çok kütüphaneden bir arada yararlanılmıştır.<br>
