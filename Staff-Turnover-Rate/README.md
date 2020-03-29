@@ -1,7 +1,7 @@
-<h2># Programlama-2 // Personel Devir Hızı Programı</h2>
+<h2># Python Practises // Personel Devir Hızı Programı</h2>
 
 <p>
-<h4>PerDev-Program.py:</h4> 
+<h4>Staff-Turnover-Rate.py:</h4> 
 Python 3.4 versiyonu için yazılmıştır.<br>
 PyQt4 kütüphanesinden yararlanılarak kullanıcı arayüzü oluşturulmuştur.<br>
 1 ve 12 ay arasında kullanıcı seçeneğine göre hesap yapabilmektedir.<br>
