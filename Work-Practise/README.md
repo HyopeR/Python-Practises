@@ -1,1 +1,1 @@
-# Programlama-2
+# Python Practises
