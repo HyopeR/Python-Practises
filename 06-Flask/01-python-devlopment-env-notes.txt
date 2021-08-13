@@ -8,3 +8,10 @@ Python local olarak proje çalıştırmak.
 6- touch requirements.text   -> kullanılacak paketlerin olduğu bir txt dosyası hazırla kaydet
 7- venv\Scripts\activate.bat -> sanal ortamı aktif hale getir. consolde (venv) yazacak.
 8- python -m pip install -r requirements.txt -> sanal ortama bağımlılık paketlerini yükle.
+9- Daha sonra IDE'nin ayarlarından project structure venv olarak ayarlanacak.
+10- Ve başlamaya hazırız. Lokalimizdeki paketlerden tamamen soyutlanmış 
+bir sanal ortamda proje geliştirebiliriz.
+
+
+Paketlerimizin yüklenip yüklenmediğini kotnrol etmek için:
+1- pip list -> (venv) içerisinde
