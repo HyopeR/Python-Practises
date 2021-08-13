@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>About</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <h3>Main</h3>
+    <p>This page is home page.</p>
+    <h5>Number props: {{number}}</h5>
+
+    {% for key, value in article.items(): %}
+      <li>
+          <b>{{key}}:</b>
+          <span>{{value}}</span>
+      </li>
+    {% endfor %}
+
+    {% include "footer.html" %}
+</body>
+</html>

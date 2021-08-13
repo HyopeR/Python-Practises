@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    Main Page
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+      <h2 class="display-4">Main Page</h2>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </p>
+    </div>
+
+
+    <div class="row">
+        <div class="alert alert-primary" role="alert">
+            {% if answer == 'Yes' %}
+                <p>Your answer is YES.</p>
+            {% else %}
+                <p>Your answer is No.</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="alert alert-success" role="alert">
+            {% if operation == 1 %}
+                <p>1. Operation</p>
+            {% elif operation == 2 %}
+                <p>2. Operation</p>
+            {% else %}
+                <p>Invalid Operation</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="row">
+        {% for number in numbers %}
+            <div class="col-4" style="text-align: center">
+                <h2><span class="badge bg-info">{{number}}</span></h2>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        {% for user in users %}
+            <div class="col-4">
+                <p>
+                    <span>Id: </span>
+                    <span>{{user.id}}</span>
+                </p>
+
+                <p>
+                    <span>Name: </span>
+                    <span>{{user.name}}</span>
+                </p>
+
+                <p>
+                    <span>About: </span>
+                    <span>{{user.about}}</span>
+                </p>
+
+                <a class="btn btn-primary" href="/about/{{user.id}}" role="button">About more</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

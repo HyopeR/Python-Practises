@@ -1,0 +1,10 @@
+Python local olarak proje çalıştırmak.
+
+1- Python sitesinden python indir, kurulum yap.
+2- pip install virtualenv    -> sanal ortam için paket kurulumu yap.
+3- mkdir project-name        -> proje dosyası oluştur.
+4- cd project-name           -> proje dizinine gir.
+5- python -m venv venv       -> proje dizininde sanal ortam kur.
+6- touch requirements.text   -> kullanılacak paketlerin olduğu bir txt dosyası hazırla kaydet
+7- venv\Scripts\activate.bat -> sanal ortamı aktif hale getir. consolde (venv) yazacak.
+8- python -m pip install -r requirements.txt -> sanal ortama bağımlılık paketlerini yükle.
