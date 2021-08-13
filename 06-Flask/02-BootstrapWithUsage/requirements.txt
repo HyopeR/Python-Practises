@@ -1,3 +1,5 @@
 Flask
 Flask-WTF
+email_validator
 flask-mysqldb
+passlib
