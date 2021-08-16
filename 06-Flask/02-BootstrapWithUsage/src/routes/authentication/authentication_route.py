@@ -11,13 +11,11 @@ def register():
     form = RegisterForm(request.form)
 
     if request.method == 'POST' and form.validate():
-
-
+        AuthenticationController().register(form)
 
         # Url for metodu ile bir metodun ilişkili olduğu rotaya gidilebilir.
         return redirect(url_for('main.index'))
     else:
-        AuthenticationController(form).register()
         return render_template("register.html", form=form)
 
 

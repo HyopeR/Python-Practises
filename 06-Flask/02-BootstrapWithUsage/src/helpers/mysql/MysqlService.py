@@ -14,13 +14,13 @@ class MysqlService:
     def __init__(self, app):
         if MysqlService.__instance is None:
             try:
-                self.__host = ' 192.168.1.210'
-                self.__port = '3306'
-                self.__user = 'root'
-                self.__password = '123123aa'
-                self.__db = 'ybblog'
-                self.__cursor_class = 'DictCursor'
-                self.__mysql = None
+                self.__host = "127.0.0.1"
+                self.__port = 3306
+                self.__user = "root"
+                self.__password = "123123aa"
+                self.__db = "ybblog"
+                self.__cursor_class = "DictCursor"
+                self.mysql: MySQL
 
                 app.config["MYSQL_HOST"] = self.__host
                 app.config["MYSQL_PORT"] = self.__port
@@ -29,7 +29,7 @@ class MysqlService:
                 app.config["MYSQL_DB"] = self.__db
                 app.config["MYSQL_CURSORCLASS"] = self.__cursor_class
 
-                self.__mysql = MySQL(app)
+                self.mysql = MySQL(app)
                 MysqlService.__instance = self
 
             except Exception as error:
@@ -37,5 +37,8 @@ class MysqlService:
         else:
             raise Exception("This class is a singleton!")
 
-    def get_cursor(self):
-        return self.__instance.__mysql.cursor()
+    def cursor(self):
+        return self.mysql.connection.cursor()
+
+    def commit(self):
+        self.mysql.connection.commit()
