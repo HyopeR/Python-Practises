@@ -1,18 +1,24 @@
 from passlib.hash import sha256_crypt
-
-from src.helpers.mysql.mysql_service import ServiceMysql
-
+from src.helpers.mysql.MysqlService import MysqlService
+import attr
 
 class AuthenticationController():
-    def __init__(self, form):
-        self.form = form
 
-    def register(self):
-        name = self.form.name.data
-        surname = self.form.surname.data
-        email = self.form.email.data
-        username = self.form.username.data
-        password = sha256_crypt.encrypt(self.form.password.data)
+    def register(self, form):
+        name = form.name.data
+        surname = form.surname.data
+        email = form.email.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(form.password.data)
 
-        mysql = ServiceMysql.get_instance(None)
+        mysql = MysqlService.get_instance(None)
+        mysql.get_cursor()
+        print('CONTROLLER', mysql)
+
+    def login(self, form):
+        username = form.username.data
+        password = sha256_crypt.encrypt(form.password.data)
+
+        mysql = MysqlService.get_instance(None)
+        mysql.get_cursor()
         print('CONTROLLER', mysql)

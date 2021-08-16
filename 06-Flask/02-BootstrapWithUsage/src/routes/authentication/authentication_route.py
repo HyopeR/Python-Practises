@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
 from src.routes.authentication.authentication_controller import AuthenticationController
-from src.services.Forms.RegisterForm import RegisterForm
+from src.services.forms.RegisterForm import RegisterForm
 
 authentication = Blueprint('authentication', __name__, template_folder='../../templates')
 

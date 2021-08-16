@@ -1,20 +1,18 @@
 from flask_mysqldb import MySQL
 
 
-class ServiceMysql:
+class MysqlService:
     __instance = None
 
     @staticmethod
     def get_instance(app):
         """ Static access method. """
-        if ServiceMysql.__instance is None:
-            ServiceMysql(app)
-        return ServiceMysql.__instance
+        if MysqlService.__instance is None:
+            MysqlService(app)
+        return MysqlService.__instance
 
     def __init__(self, app):
-        if ServiceMysql.__instance is None:
-            print(app)
-
+        if MysqlService.__instance is None:
             try:
                 self.__host = ' 192.168.1.210'
                 self.__port = '3306'
@@ -32,7 +30,7 @@ class ServiceMysql:
                 app.config["MYSQL_CURSORCLASS"] = self.__cursor_class
 
                 self.__mysql = MySQL(app)
-                ServiceMysql.__instance = self
+                MysqlService.__instance = self
 
             except Exception as error:
                 raise print(repr(error))
