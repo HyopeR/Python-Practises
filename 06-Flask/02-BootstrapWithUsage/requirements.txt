@@ -1,5 +1,5 @@
 Flask
-Flask-WTF
+wtforms
 email_validator
 flask-mysqldb
 passlib

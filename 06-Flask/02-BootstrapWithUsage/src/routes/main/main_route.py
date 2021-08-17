@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template
+from src.core.decorators.login_required import login_required
+from src.routes.main.main_controller import MainController
 
 main = Blueprint('main', __name__, template_folder='../../templates')
 
@@ -13,19 +15,11 @@ def about():
     return render_template("about.html")
 
 
-@main.route("/about/<id>", methods=['GET'])
-def one_about(id):
-    return "About {}".format(id)
-
-
-@main.route("/articles", methods=['GET'])
-def articles():
-    return render_template("articles.html")
-
-
-@main.route("/article/<id>", methods=['GET'])
-def one_article(id):
-    return "Article {}".format(id)
+@main.route("/dashboard", methods=['GET'])
+@login_required
+def dashboard():
+    status, data = MainController().dashboard()
+    return render_template("dashboard.html", articles=data) if status else render_template("dashboard.html")
 
 
 @main.route("/example", methods=['GET'])

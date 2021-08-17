@@ -4,6 +4,7 @@ from src.core.handlers.ErrorHandler import ErrorHandler
 from src.routes.index import Routes
 
 app = Flask(__name__, template_folder='./src/templates')
+app.secret_key = "ybblog"
 
 mysql = MysqlService.get_instance(app)
 routes = Routes.get_instance(app)

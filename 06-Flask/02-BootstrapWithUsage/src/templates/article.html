@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    {% if article %}
+        {{article.title}}
+    {% else %}
+        Article
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if article %}
+        <h4>{{article.title}}</h4>
+        <hr />
+            <small>{{article.author}}</small>
+            <small>{{article.created_date}}</small>
+        <hr />
+        <p>{{article.content|safe}}</p>
+    {% else %}
+        <div class="alert alert-warning">
+            This article was not found.
+        </div>
+    {% endif %}
+{% endblock %}

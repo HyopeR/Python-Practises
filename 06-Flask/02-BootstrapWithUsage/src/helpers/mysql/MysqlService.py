@@ -1,14 +1,31 @@
+import MySQLdb.cursors
 from flask_mysqldb import MySQL
+from typing import Any, Tuple
+
+
+class SkeletonMysqlService:
+    def __init__(self):
+        self.mysql: MySQL
+
+    def cursor(self):
+        pass
+
+    def commit(self):
+        pass
+
+    def raw_query(self, query, values=None) -> Tuple[Any, MySQLdb.cursors.DictCursor]:
+        pass
 
 
 class MysqlService:
     __instance = None
 
     @staticmethod
-    def get_instance(app):
+    def get_instance(app) -> SkeletonMysqlService:
         """ Static access method. """
         if MysqlService.__instance is None:
             MysqlService(app)
+
         return MysqlService.__instance
 
     def __init__(self, app):
@@ -42,3 +59,14 @@ class MysqlService:
 
     def commit(self):
         self.mysql.connection.commit()
+
+    def raw_query(self, query, values=None) -> Tuple[Any, MySQLdb.cursors.DictCursor]:
+        try:
+            cursor = self.cursor()
+            result = cursor.execute(query, values)
+            self.commit()
+
+            return result, cursor
+
+        except Exception as err:
+            print(err)
