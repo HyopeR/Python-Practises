@@ -80,3 +80,19 @@ class ArticleController():
 
         cursor.close()
         return bool(result), data
+
+    def search_article(self, keyword) -> Tuple[bool, Any]:
+        mysql_service = MysqlService.get_instance(None)
+
+        like = "%" + keyword.strip() + "%"
+        query = """SELECT * FROM articles WHERE title LIKE %s"""
+
+        result, cursor = mysql_service.raw_query(query, (like,))
+
+        if bool(result) is False:
+            flash("No article found matching your search term.", "warning")
+
+        data = cursor.fetchall()
+        cursor.close()
+
+        return bool(result), data

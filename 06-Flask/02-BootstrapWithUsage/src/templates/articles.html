@@ -8,6 +8,11 @@
     <h3>Articles</h3>
     <hr />
 
+    <form action="/article/search" method="post" class="d-flex">
+        <input name="keyword" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
     {% if articles %}
         {% for article in articles %}
             <div class="card mt-2">

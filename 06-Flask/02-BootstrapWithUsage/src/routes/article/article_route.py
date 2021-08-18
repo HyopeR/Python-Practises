@@ -41,7 +41,6 @@ def update_article(id):
     status, data = ArticleController().update_article(id, None)
 
     if request.method == "POST":
-        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         form = ArticleForm(request.form)
         status, data = ArticleController().update_article(id, form)
         return redirect(url_for("main.dashboard"))
@@ -60,3 +59,15 @@ def update_article(id):
 def delete_article(id):
     status = ArticleController().delete_article(id)
     return redirect(url_for('main.dashboard')) if status else redirect(url_for('main.index'))
+
+
+@article.route("/article/search", methods=['GET', 'POST'])
+def search_article():
+
+    if request.method == 'GET':
+        return redirect(url_for('article.articles'))
+    else:
+        keyword = request.form.get("keyword")
+        status, data = ArticleController().search_article(keyword)
+
+        return render_template("articles.html", articles=data) if status else redirect(url_for('article.articles'))
