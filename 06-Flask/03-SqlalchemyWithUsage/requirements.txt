@@ -1,0 +1,7 @@
+Flask
+Flask-Migrate
+Flask-SQLAlchemy
+psycopg2
+passlib
+marshmallow
+PyJWT
