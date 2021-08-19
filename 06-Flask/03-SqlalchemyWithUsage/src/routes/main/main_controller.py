@@ -1,7 +1,7 @@
 from typing import Any, Tuple, Mapping
 
 
-class MainController():
+class MainController:
 
     def main(self) -> Mapping:
         return {"app": "flask"}
