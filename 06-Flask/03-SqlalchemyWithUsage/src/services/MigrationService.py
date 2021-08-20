@@ -7,6 +7,6 @@ class MigrationService(metaclass=Singleton):
 
     def initialize(self, app, db):
         self.migrate = Migrate(app, db)
-        from src.models.index import metadata
+        from src.models import metadata
 
         return MigrationService()

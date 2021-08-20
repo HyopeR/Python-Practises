@@ -1,21 +1,21 @@
-import os
 from flask import Flask
 from src.core.handlers.ErrorHandler import ErrorHandler
-from src.routes.index import Routes
+from src.routes import Routes
 from src.services.EnvironmentService import EnvironmentService
 from src.services.AlchemyService import AlchemyService
 from src.services.MigrationService import MigrationService
+from src.services.ModelService import ModelService
 
 app = Flask(__name__, template_folder='./src/templates')
-
-# Environment configuration.
-env_config = os.getenv('APP_SETTINGS', 'src.config.DevelopmentConfig')
-app.config.from_object(env_config)
 
 # İnitialize services.
 environment_service = EnvironmentService().initialize(app)
 db = AlchemyService().initialize(app).db
+
+from src.models import metadata
+model_service = ModelService().initialize(metadata)
 import manage
+
 routes_service = Routes().initialize(app)
 
 

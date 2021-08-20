@@ -1,3 +1,4 @@
+import os
 from flask import Config
 from src.core.metaclass.Singleton import Singleton
 
@@ -6,6 +7,11 @@ class EnvironmentService(metaclass=Singleton):
     __env: Config = None
 
     def initialize(self, app):
+        # Environment Config
+        env_config = os.getenv('APP_SETTINGS', 'src.config.DevelopmentConfig')
+        app.config.from_object(env_config)
+
+        # Sql Alchemy Config
         app.config['SQLALCHEMY_DATABASE_URI'] = app.config.get("POSTGRES_URI")
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
