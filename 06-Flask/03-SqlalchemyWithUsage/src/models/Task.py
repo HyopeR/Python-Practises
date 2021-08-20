@@ -1,19 +1,15 @@
-from src.services.AlchemyService import AlchemyService
+from src import db
+from sqlalchemy.dialects.postgresql import TEXT, JSON, DATE, INTEGER, VARCHAR
+from src.models.TaskCategory import TaskCategory
+from datetime import datetime
 
-db = AlchemyService().db
 
+class Task(db.Model):
+    __tablename__ = 'task'
 
-class Result(db.Model):
-    __tablename__ = 'tasks'
-
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(64), unique=True, index=True)
-    password = db.Column(db.String(128))
-
-    def __init__(self, url, result_all, result_no_stop_words):
-        self.url = url
-        self.result_all = result_all
-        self.result_no_stop_words = result_no_stop_words
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
+    id = db.Column(INTEGER, primary_key=True)
+    content = db.Column(TEXT)
+    steps = db.Column(JSON)
+    created_at = db.Column(DATE, default=datetime.now())
+    updated_at = db.Column(DATE, default=datetime.now(), onupdate=datetime.now())
+    subscriptions = db.relationship('Category', secondary=TaskCategory, backref=db.backref('tasks', lazy='dynamic'))

@@ -7,3 +7,4 @@ marshmallow
 PyJWT
 python-dotenv
 gunicorn
+SQLAlchemy

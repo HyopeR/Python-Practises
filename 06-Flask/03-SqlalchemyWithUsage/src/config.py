@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-load_dotenv('.env')
+load_dotenv('../.env')
 
 
 class Config:
@@ -13,10 +13,9 @@ class ProductionConfig(Config):
     SECRET_KEY = os.getenv("SECRET_KEY")
     HELLO_WORLD = os.getenv("HELLO_WORLD")
 
-    @property
-    def POSTGRES_URI(self):  # Note: all caps
-        return f"mysql://user@{self.SECRET_KEY}/foo"
-    pass
+    # @property
+    # def POSTGRES_URI(self):
+    #     return f"mysql://user@{self.SECRET_KEY}/foo"
 
 
 class DevelopmentConfig(Config):
@@ -33,7 +32,4 @@ class DevelopmentConfig(Config):
     POSTGRES_USER = 'root'
     POSTGRES_PASSWORD = '123123aa'
     POSTGRES_DB = 'todo'
-
-    @property
-    def POSTGRES_URI(self):  # Note: all caps
-        return f"postgres://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+    POSTGRES_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"

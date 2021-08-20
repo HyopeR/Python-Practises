@@ -15,3 +15,12 @@ bir sanal ortamda proje geliştirebiliriz.
 
 Paketlerimizin yüklenip yüklenmediğini kotnrol etmek için:
 1- pip list -> (venv) içerisinde
+
+Paket yükleme ve kaldırma yönetimi:
+
+Yöntem 1:
+1- pip freeze > requirements.txt      -> Bize sanal ortamda kurulu paketleri getirir.
+2- pip uninstall -r requirements.txt {-y}  -> Paket kaldırmak için kullanılır (-y hepsini birden)
+
+Yöntem 2:
+1- pip uninstall -r {-y} <(pip freeze) -> Tek komutta silmek
