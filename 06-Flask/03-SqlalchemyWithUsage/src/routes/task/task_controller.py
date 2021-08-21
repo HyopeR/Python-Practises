@@ -3,22 +3,25 @@ from src.routes.task.task_service import TaskService
 
 
 class TaskController(metaclass=Singleton):
+    def __init__(self):
+        self.TaskSer = TaskService()
+
     def get(self):
-        TaskService().get()
+        self.TaskSer.get()
         return {}
 
     def get_one(self, id):
-        TaskService().get_one(id)
+        self.TaskSer.get_one(id)
         return {}
 
     def post(self, body):
-        TaskService().post(body)
+        self.TaskSer.post(body)
         return {}
 
     def put(self, id, body):
-        TaskService().put(id, body)
+        self.TaskSer.put(id, body)
         return {}
 
     def delete(self, id):
-        TaskService().delete(id)
+        self.TaskSer.delete(id)
         return {}

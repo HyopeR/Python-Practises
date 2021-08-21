@@ -1,26 +1,30 @@
 from src.core.metaclass.Singleton import Singleton
-from src.services.AlchemyService import AlchemyService
-from src.services.ModelService import ModelService
+from src.core.parentclass.Service import Service
+from src.core.decorators.exception_catcher import exception_catcher
 
 
-class TaskService(metaclass=Singleton):
+class TaskService(Service, metaclass=Singleton):
     def __init__(self):
-        self.db = AlchemyService().db
-        self.Task = ModelService().getModel()
+        super().__init__()
+        self.Task = self.ModelModule.getModel("Task")
 
+    @exception_catcher
     def get(self):
-        ModelService().getModel()
-        # data = Task.query.all()
+        data = self.Task.query.all()
         return {}
 
+    @exception_catcher
     def get_one(self, id):
         return {}
 
+    @exception_catcher
     def post(self, body):
         return {}
 
+    @exception_catcher
     def put(self, id, body):
         return {}
 
+    @exception_catcher
     def delete(self, id):
         return {}

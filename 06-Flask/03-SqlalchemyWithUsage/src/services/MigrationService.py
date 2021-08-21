@@ -10,3 +10,7 @@ class MigrationService(metaclass=Singleton):
         from src.models import metadata
 
         return MigrationService()
+
+
+def serve_migrate() -> MigrationService:
+    return MigrationService()

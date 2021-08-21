@@ -1,4 +1,4 @@
-from src import db
+from manage import db
 from sqlalchemy.dialects.postgresql import INTEGER, VARCHAR
 
 

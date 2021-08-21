@@ -9,3 +9,11 @@ class AlchemyService(metaclass=Singleton):
         self.db = SQLAlchemy(app)
 
         return AlchemyService()
+
+
+def serve_db() -> SQLAlchemy:
+    return AlchemyService().db
+
+
+def serve_alchemy() -> AlchemyService:
+    return AlchemyService()

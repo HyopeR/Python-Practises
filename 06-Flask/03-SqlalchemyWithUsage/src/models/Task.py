@@ -1,4 +1,4 @@
-from src import db
+from manage import db
 from sqlalchemy.dialects.postgresql import TEXT, JSON, DATE, INTEGER, BOOLEAN, VARCHAR
 from src.models.TaskCategory import TaskCategory
 from datetime import datetime

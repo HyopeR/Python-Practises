@@ -28,3 +28,7 @@ class EnvironmentService(metaclass=Singleton):
             return item.fget()
 
         return self.__env.get(key)
+
+
+def serve_env() -> EnvironmentService:
+    return EnvironmentService()
