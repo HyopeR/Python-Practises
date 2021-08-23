@@ -1,6 +1,7 @@
 from flask import request
 from functools import wraps
 from src.core.handlers.ErrorHandler import ErrorHandler
+from src.helpers.error.ErrorDescriptive import ErrorDescriptive
 
 
 def validate_json(f):
@@ -8,7 +9,8 @@ def validate_json(f):
     def wrapper(*args, **kwargs):
         data = request.get_json()
         if not data:
-            raise ErrorHandler("Request body expected to JSON", "invalid_request_body")
+            error_base = ErrorDescriptive.invalid_json
+            raise ErrorHandler(error_base.message, error_base.key, 400)
 
         return f(*args, **kwargs)
 

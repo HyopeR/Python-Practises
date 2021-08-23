@@ -1,5 +1,6 @@
 from flask import Flask
 from src.core.handlers.ErrorHandler import ErrorHandler
+from src.helpers.error.ErrorDescriptive import ErrorDescriptive
 from src.routes import Routes
 
 app = Flask(__name__, template_folder='./src/templates')
@@ -10,7 +11,9 @@ RouteModule = Routes().initialize(app)
 
 @app.errorhandler(404)
 def catch_route_not_found(e):
-    err = ErrorHandler("Route is not found.", "route_not_found", status_code=404)
+    base_err = ErrorDescriptive.route_not_found
+
+    err = ErrorHandler(base_err.message, base_err.key, 404, str(e))
     return err.handle()
 
 
@@ -19,6 +22,7 @@ def catch_error(e):
     try:
         return e.handle()
     except Exception as error:
-        print(error)
-        err = ErrorHandler("Unexpected error.", "unexpected_error", status_code=400)
+        base_err = ErrorDescriptive.unexpected_error
+
+        err = ErrorHandler(base_err.message, base_err.key, 400, str(error))
         return err.handle()

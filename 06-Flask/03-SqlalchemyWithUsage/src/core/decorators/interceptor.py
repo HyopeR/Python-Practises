@@ -2,20 +2,21 @@ from functools import wraps
 from src.helpers.error.ErrorDescriptive import ErrorBase
 from src.helpers.error.ErrorDescriptive import ErrorDescriptive
 from src.core.handlers.ErrorHandler import ErrorHandler
+from src.core.handlers.DataHandler import DataHandler
 
 
 def interceptor(func):
-    print('this is executed at function definition time (def my_func)')
-
     @wraps(func)
     def wrapper(*args, **kwargs):
-        print('this is executed before function call')
         try:
             result = func(*args, **kwargs)
-            print('this is executed after function call')
-            return result
+            return DataHandler(result, 200).handle()
+
         except Exception as error:
-            detail: ErrorBase = getattr(ErrorDescriptive, str(error))
-            raise ErrorHandler(detail.message, detail.key, 400)
+            key = error.args[0]
+            error_base: ErrorBase = getattr(ErrorDescriptive, key)
+            detail = error.args[1]
+
+            raise ErrorHandler(error_base.message, error_base.key, 400, detail)
 
     return wrapper

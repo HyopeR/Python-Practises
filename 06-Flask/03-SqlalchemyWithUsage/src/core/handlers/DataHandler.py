@@ -2,7 +2,7 @@ from flask import Response
 from json import dumps
 
 
-class DataHandler(Exception):
+class DataHandler(object):
 
     def __init__(self, data, status_code=200):
         self.data = data

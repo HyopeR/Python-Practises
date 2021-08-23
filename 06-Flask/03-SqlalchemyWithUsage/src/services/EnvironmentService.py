@@ -13,7 +13,7 @@ class EnvironmentService(metaclass=Singleton):
 
         # Sql Alchemy Config
         app.config['SQLALCHEMY_DATABASE_URI'] = app.config.get("POSTGRES_URI")
-        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
         self.__env = app.config
         return EnvironmentService()

@@ -2,6 +2,7 @@ from functools import wraps
 from flask import request
 from src.core.handlers.ErrorHandler import ErrorHandler
 from marshmallow import ValidationError, Schema
+from src.helpers.error.ErrorDescriptive import ErrorDescriptive
 
 
 def validate_schema(schema):
@@ -15,8 +16,11 @@ def validate_schema(schema):
                 schema.load(data)
 
             except ValidationError as err:
-                raise ErrorHandler("DTO error", "dto_error", detail=err.messages)
+                error_base = ErrorDescriptive.dto_error
+                raise ErrorHandler(error_base.message, error_base.key, 400, err.messages)
 
             return f(*args, **kw)
+
         return wrapper
+
     return decorator

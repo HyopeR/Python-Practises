@@ -1,13 +1,13 @@
 from functools import wraps
 
-def exception_catcher(error_key):
+
+def service_interceptor(error_key):
     def decorator(func):
 
         @wraps(func)
-        def wrapper(self, *method_args, **method_kwargs):
-
+        def wrapper(*args, **kwargs):
             try:
-                result = func(self, *method_args, **method_kwargs)
+                result = func(*args, **kwargs)
                 return result
 
             except Exception as error:
@@ -15,4 +15,5 @@ def exception_catcher(error_key):
                 raise error
 
         return wrapper
+
     return decorator

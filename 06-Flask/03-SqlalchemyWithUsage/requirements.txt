@@ -1,9 +1,11 @@
 Flask
+flask-marshmallow
 Flask-Migrate
 Flask-SQLAlchemy
 psycopg2
 passlib
 marshmallow
+marshmallow-sqlalchemy
 PyJWT
 python-dotenv
 gunicorn
