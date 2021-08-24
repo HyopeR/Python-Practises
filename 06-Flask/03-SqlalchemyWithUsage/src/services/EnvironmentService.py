@@ -11,6 +11,9 @@ class EnvironmentService(metaclass=Singleton):
         env_config = os.getenv('APP_SETTINGS', 'src.config.DevelopmentConfig')
         app.config.from_object(env_config)
 
+        # İç içe şemalarda sıralamayı korumak...
+        app.config['JSON_SORT_KEYS'] = False
+
         # Sql Alchemy Config
         app.config['SQLALCHEMY_DATABASE_URI'] = app.config.get("POSTGRES_URI")
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

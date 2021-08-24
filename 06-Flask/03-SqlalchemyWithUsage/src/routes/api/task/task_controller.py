@@ -1,5 +1,5 @@
 from src.core.metaclass.Singleton import Singleton
-from src.routes.task.task_service import TaskService
+from src.routes.api.task.task_service import TaskService
 
 
 class TaskController(metaclass=Singleton):
@@ -15,11 +15,20 @@ class TaskController(metaclass=Singleton):
         return result
 
     def post(self, body):
-        result = self.TaskService.post(body)
+        categories = body.get('categories')
+        if categories is not None and isinstance(categories, list):
+            body.pop("categories")
+
+        result = self.TaskService.post(body, categories)
         return result
 
     def put(self, id, body):
-        result = self.TaskService.put(id, body)
+        categories = body.get('categories')
+
+        if categories is not None and isinstance(categories, list):
+            body.pop("categories")
+
+        result = self.TaskService.put(id, body, categories)
         return result
 
     def delete(self, id):

@@ -16,7 +16,7 @@ class Task(db.Model):
     created_at = db.Column(TIMESTAMP, default=datetime.utcnow)
     updated_at = db.Column(TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
     is_done = db.Column(BOOLEAN, default=False)
-    subscriptions = db.relationship('Category', secondary=TaskCategory, backref=db.backref('tasks', lazy='dynamic'))
+    categories = db.relationship('Category', secondary=TaskCategory, backref=db.backref('categories', lazy='dynamic'))
 
     def __init__(self, title, content=None, steps=None, is_done=False):
         self.title = title

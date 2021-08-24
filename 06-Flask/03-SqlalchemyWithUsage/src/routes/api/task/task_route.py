@@ -2,9 +2,8 @@ from flask import Blueprint, request
 from src.core.decorators.validate_json import validate_json
 from src.core.decorators.validate_schema import validate_schema
 from src.core.decorators.interceptor import interceptor
-from src.routes.task.task_dto import TaskPostDto, TaskPutDto
-from src.routes.task.task_controller import TaskController
-from collections import namedtuple
+from src.routes.api.task.task_dto import TaskPostDto, TaskPutDto
+from src.routes.api.task.task_controller import TaskController
 
 task_route = Blueprint('task', __name__, template_folder='../../templates')
 
@@ -26,9 +25,8 @@ def get_one(id):
 @validate_schema(schema=TaskPostDto())
 @interceptor
 def post():
-    body = request.get_json()
-    body_tuple = namedtuple('body', body.keys())(*body.values())
-    return TaskController().post(body_tuple)
+    body: dict = request.get_json()
+    return TaskController().post(body)
 
 
 @task_route.route("/task/<id>", methods=['PUT'])
@@ -36,9 +34,8 @@ def post():
 @validate_schema(schema=TaskPutDto())
 @interceptor
 def put(id):
-    body = request.get_json()
-    body_tuple = namedtuple('body', body.keys())(*body.values())
-    return TaskController().put(id, body_tuple)
+    body: dict = request.get_json()
+    return TaskController().put(id, body)
 
 
 @task_route.route("/task/<id>", methods=['DELETE'])

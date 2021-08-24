@@ -19,10 +19,10 @@ def catch_route_not_found(e):
 
 @app.errorhandler(Exception)
 def catch_error(e):
-    try:
+    if isinstance(e, ErrorHandler):
         return e.handle()
-    except Exception as error:
+    else:
         base_err = ErrorDescriptive.unexpected_error
 
-        err = ErrorHandler(base_err.message, base_err.key, 400, str(error))
+        err = ErrorHandler(base_err.message, base_err.key, 400, str(e))
         return err.handle()

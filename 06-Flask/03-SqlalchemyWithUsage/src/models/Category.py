@@ -8,4 +8,5 @@ class Category(db.Model):
     query: BaseQuery
 
     id = db.Column(INTEGER, primary_key=True)
-    title = db.Column(VARCHAR(255))
+    title = db.Column(VARCHAR(255), nullable=False)
+    # tasks = db.relationship('Task', secondary=TaskCategory, backref=db.backref('tasks', lazy='dynamic'))
