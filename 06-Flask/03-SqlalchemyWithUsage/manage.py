@@ -11,6 +11,4 @@ db = AlchemyModule.db
 ma = Marshmallow(app)
 
 MigrationModule = MigrationService().initialize(app, db)
-
-
 ModelModule = ModelService().initialize()

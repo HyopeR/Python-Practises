@@ -11,9 +11,11 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         ordered = True
 
     id = fields.Integer()
+    user_id = fields.Integer(load_only=True)
     name = fields.Str()
     surname = fields.Str()
     email = fields.Str()
+    password = fields.Str(load_only=True)
     active = fields.Bool()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
@@ -21,4 +23,4 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
 
 user_schema = UserSchema()
-# users_schema = UserSchema(many=True)
+users_schema = UserSchema(many=True)

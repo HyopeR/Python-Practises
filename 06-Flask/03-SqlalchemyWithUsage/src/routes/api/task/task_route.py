@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from src.core.decorators.validate_json import validate_json
 from src.core.decorators.validate_schema import validate_schema
-from src.core.decorators.interceptor import interceptor
+from src.utils.decorators.interceptor import interceptor
 from src.routes.api.task.task_dto import TaskPostDto, TaskPutDto
 from src.routes.api.task.task_controller import TaskController
 
@@ -14,7 +14,7 @@ def get():
     return TaskController().get()
 
 
-@task_route.route("/task/<id>", methods=['GET'])
+@task_route.route("/task/<int:id>", methods=['GET'])
 @interceptor
 def get_one(id):
     return TaskController().get_one(id)
@@ -29,7 +29,7 @@ def post():
     return TaskController().post(body)
 
 
-@task_route.route("/task/<id>", methods=['PUT'])
+@task_route.route("/task/<int:id>", methods=['PUT'])
 @validate_json
 @validate_schema(schema=TaskPutDto())
 @interceptor
@@ -38,7 +38,7 @@ def put(id):
     return TaskController().put(id, body)
 
 
-@task_route.route("/task/<id>", methods=['DELETE'])
+@task_route.route("/task/<int:id>", methods=['DELETE'])
 @interceptor
 def delete(id):
     return TaskController().delete(id)

@@ -1,10 +1,9 @@
 from flask import Blueprint, request
 from src.core.decorators.validate_json import validate_json
 from src.core.decorators.validate_schema import validate_schema
-from src.core.decorators.interceptor import interceptor
+from src.utils.decorators.interceptor import interceptor
 from src.routes.api.category.category_dto import CategoryPostDto, CategoryPutDto
 from src.routes.api.category.category_controller import CategoryController
-from collections import namedtuple
 
 category_route = Blueprint('category', __name__, template_folder='../../templates')
 
@@ -15,7 +14,7 @@ def get():
     return CategoryController().get()
 
 
-@category_route.route("/category/<id>", methods=['GET'])
+@category_route.route("/category/<int:id>", methods=['GET'])
 @interceptor
 def get_one(id):
     return CategoryController().get_one(id)
@@ -30,7 +29,7 @@ def post():
     return CategoryController().post(body)
 
 
-@category_route.route("/category/<id>", methods=['PUT'])
+@category_route.route("/category/<int:id>", methods=['PUT'])
 @validate_json
 @validate_schema(schema=CategoryPutDto())
 @interceptor
@@ -39,7 +38,7 @@ def put(id):
     return CategoryController().put(id, body)
 
 
-@category_route.route("/category/<id>", methods=['DELETE'])
+@category_route.route("/category/<int:id>", methods=['DELETE'])
 @interceptor
 def delete(id):
     return CategoryController().delete(id)

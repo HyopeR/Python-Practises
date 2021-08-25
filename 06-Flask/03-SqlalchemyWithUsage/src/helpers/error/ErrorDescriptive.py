@@ -6,6 +6,7 @@ class ErrorDescriptive:
     unexpected_error = ErrorBase('unexpected_error', 'Unexpected error.')
     dto_error = ErrorBase('dto_error', 'The data contained in the request body is missing or incorrect.')
     invalid_json = ErrorBase('invalid_json', 'Invalid request body. The data you send must be JSON.')
+    authorized_error = ErrorBase('authorized_error', 'You are not authorized for this operation!')
 
     # Token error
     token_is_missing = ErrorBase('token_is_missing', 'A valid token is missing.')
@@ -28,3 +29,9 @@ class ErrorDescriptive:
     category_add = ErrorBase('category_add', 'Category add failed.')
     category_update = ErrorBase('category_update', 'Category update failed.')
     category_delete = ErrorBase('category_delete', 'Category deletion failed.')
+
+    # User route error
+    user_get = ErrorBase('user_get', 'An error occurred while fetching the user.')
+    user_get_one = ErrorBase('user_get_one', 'An error occurred while fetching the user.')
+    user_update = ErrorBase('user_update', 'User update failed.')
+    user_delete = ErrorBase('user_delete', 'User deletion failed.')

@@ -1,6 +1,6 @@
 from src.core.metaclass.Singleton import Singleton
 from src.core.parentclass.Service import Service
-from src.core.decorators.service_interceptor import service_interceptor
+from src.utils.decorators.service_interceptor import service_interceptor
 from src.helpers.error.ErrorDescriptive import ErrorDescriptive
 
 

@@ -1,9 +1,8 @@
-from flask import Blueprint
-from src.routes.main.main_controller import MainController
+from flask import Blueprint, render_template
 
-main_route = Blueprint('main', __name__, template_folder='../../templates')
+main_route = Blueprint('main', __name__, template_folder='../templates')
 
 
 @main_route.route("/", methods=['GET'])
 def main():
-    return MainController().main()
+    return render_template('main.html')

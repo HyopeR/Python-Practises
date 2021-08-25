@@ -5,7 +5,7 @@ from src.models.User import User
 
 from src.models.schemas.Task import task_schema, tasks_schema
 from src.models.schemas.Category import category_schema, categories_schema
-from src.models.schemas.User import user_schema
+from src.models.schemas.User import user_schema, users_schema
 
 metadata = {
     "models": {
@@ -21,5 +21,6 @@ metadata = {
         "Category": category_schema,
         "Categories": categories_schema,
         "User": user_schema,
+        "Users": users_schema,
     }
 }

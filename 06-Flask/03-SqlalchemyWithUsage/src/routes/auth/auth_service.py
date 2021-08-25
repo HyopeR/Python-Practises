@@ -1,6 +1,6 @@
 from src.core.metaclass.Singleton import Singleton
 from src.core.parentclass.Service import Service
-from src.core.decorators.service_interceptor import service_interceptor
+from src.utils.decorators.service_interceptor import service_interceptor
 from src.helpers.error.ErrorDescriptive import ErrorDescriptive
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
@@ -18,17 +18,16 @@ class AuthService(Service, metaclass=Singleton):
 
     @service_interceptor(ErrorDescriptive.login_error.key)
     def login(self, email, password):
-        print(password)
         user = self.User.query.filter_by(email=email).first()
 
         if user is None:
             raise Exception('Email address not found.')
 
-        if sha256_crypt.verify(password, user.password):
+        if sha256_crypt.verify(password, user.password) is False:
             raise Exception('Password incorrect.')
 
         date = datetime.now() + relativedelta(years=1)
-        token = jwt.encode({"exp": date}, EnvironmentService().get_one('SECRET_KEY'), algorithm="HS256")
+        token = jwt.encode({"exp": date, "id": user.id}, EnvironmentService().get_one('SECRET_KEY'), algorithm="HS256")
 
         data = self.user_schema.dump(user)
         data["token"] = token
@@ -44,7 +43,7 @@ class AuthService(Service, metaclass=Singleton):
         self.db.session.commit()
 
         date = datetime.now() + relativedelta(years=1)
-        token = jwt.encode({"exp": date}, EnvironmentService().get_one('SECRET_KEY'), algorithm="HS256")
+        token = jwt.encode({"exp": date, "id": user.id}, EnvironmentService().get_one('SECRET_KEY'), algorithm="HS256")
 
         data = self.user_schema.dump(user)
         data["token"] = token

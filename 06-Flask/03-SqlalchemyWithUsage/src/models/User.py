@@ -1,12 +1,11 @@
 from manage import db
 from sqlalchemy.dialects.postgresql import INTEGER, VARCHAR, TIMESTAMP, BOOLEAN
-from src.models.TaskUser import TaskUser
 from datetime import datetime
 from flask_sqlalchemy import BaseQuery
 
 
 class User(db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     query: BaseQuery
 
     id = db.Column(INTEGER, primary_key=True)
@@ -17,7 +16,7 @@ class User(db.Model):
     active = db.Column(BOOLEAN, default=True)
     created_at = db.Column(TIMESTAMP, default=datetime.utcnow)
     updated_at = db.Column(TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
-    tasks = db.relationship('Task', secondary=TaskUser, backref=db.backref('tasks', lazy='dynamic'))
+    tasks = db.relationship('Task', cascade="all, delete")
 
     def __init__(self, name, email, password, surname=None, active=True):
         self.name = name

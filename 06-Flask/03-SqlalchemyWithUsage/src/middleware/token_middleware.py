@@ -20,6 +20,8 @@ def token_middleware(f):
 
         try:
             data = jwt.decode(token, EnvironmentService().get_one('SECRET_KEY'), algorithms=["HS256"])
+            setattr(request, "user_id", data.get('id'))
+
         except Exception as e:
             error = ErrorDescriptive.token_invalid
             raise ErrorHandler(error.message, error.key, 400)
